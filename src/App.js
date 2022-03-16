@@ -1,12 +1,13 @@
 import { BrowserRouter as Router,
   useRoutes, } from "react-router-dom"
-import { Home } from "./Pages";
+import { Detail, Home} from "./Pages";
 import './App.css';
 import './styles/index.css'
 
 const App = () => {
   let routes = useRoutes([
     { path: "/", element: <Home /> },
+    { path: "/detail/:id", element: <Detail /> },
     // ...
   ]);
   return routes;

@@ -1,30 +1,400 @@
-$optionDefaultColours: #ED5565,
+/* settings */
+
+$fs: clamp(1rem, 0.9rem , 4rem);
+/* Colors */
+$body-bg: #363636;
+$fuschia: #ff0081;
+$button-bg: #92e3a9;
+$button-text-color: #fff;
+$baby-blue: #f8faff;
+$baby-pink: #fafafa;
+$optionDefaultColours:#ED5565,
 #FC6E51,
+#e59ca4,
 #FFCE54,
 #2ECC71,
+#92ecec,
 #5D9CEC,
 #AC92EC;
 
-.options {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: stretch;
+$defaultPadding: 8px;
+$defaultMargin: 8px;
+$defaultmin-width: 600px;
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body,
+html {
+  height: 100%;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: $body-bg;
+}
+
+/* a elements that don't have a class get default styles */
+a:not([class]) {
+  color: $button-text-color;
+  &:hover {
+    color: $button-bg
+  }
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  border-style: none;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+h1,
+h2,
+h3 {
+  max-width: 60ch;
+}
+
+p,
+ul,
+ol,
+h4,
+h5,
+h6 {
+  max-width: 85ch;
+}
+
+a {
+  color: inherit;
+}
+
+/* all componant get default font size*/
+[class^="c-"],
+[class*=" c-"] {
+  font-size: ($fs, 1rem);
+}
+
+
+.white {
+  background-color: $baby-pink;
+}
+
+.black {
+  background-color: $body-bg;
+  color: $baby-pink;
+}
+
+
+/* util */
+.button {
+  border: none;
+  display: inline-block;
+  padding: $defaultPadding 2*$defaultPadding;
+  vertical-align: middle;
   overflow: hidden;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
 
-  min-width: 600px;
-  max-width: 900px;
-  //width: calc(100% - 100px);
-  height: 400px;
+.wide {
+  letter-spacing: 4px;
+}
 
-  .option {
+.image {
+  max-width: 100%;
+  height: auto;
+}
+
+.input {
+  padding: $defaultMargin;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+
+.top,
+.bottom {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.top {
+  top: 0;
+}
+
+.left {
+  float: left !important;
+}
+
+.right {
+  float: right !important;
+}
+
+.tiny {
+  font-size: 10px !important;
+}
+
+.small {
+  font-size: 12px !important;
+}
+
+.medium {
+  font-size: 15px !important;
+}
+
+.large {
+  font-size: 18px !important;
+}
+
+.xlarge {
+  font-size: 3*$defaultMargin !important;
+}
+
+.xxlarge {
+  font-size: 36px !important;
+}
+
+.xxxlarge {
+  font-size: 48px !important;
+}
+
+.left-align {
+  text-align: left !important;
+}
+
+.right-align {
+  text-align: right !important;
+}
+
+.justify {
+  text-align: justify !important;
+}
+
+.center {
+  text-align: center !important;
+}
+
+.border-0 {
+  border: 0 !important;
+}
+
+.border {
+  border: 1px solid #ccc !important;
+}
+
+.border-top {
+  border-top: 1px solid #ccc !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #ccc !important;
+}
+
+.border-left {
+  border-left: 1px solid #ccc !important;
+}
+
+.border-right {
+  border-right: 1px solid #ccc !important;
+}
+
+.topbar {
+  border-top: 6px solid #ccc !important;
+}
+
+.bottombar {
+  border-bottom: 6px solid #ccc !important;
+}
+
+.leftbar {
+  border-left: 6px solid #ccc !important;
+}
+
+.rightbar {
+  border-right: 6px solid #ccc !important;
+}
+
+.margin {
+  margin: 2*$defaultMargin !important;
+}
+
+.margin-top {
+  margin-top: 2*$defaultMargin !important;
+}
+
+.margin-bottom {
+  margin-bottom: 2*$defaultMargin !important;
+}
+
+.margin-left {
+  margin-left: 2*$defaultMargin !important;
+}
+
+.margin-right {
+  margin-right: 2*$defaultMargin !important;
+}
+
+.margin-x {
+  margin-left: 2*$defaultMargin !important;
+  margin-right: 2*$defaultMargin !important;
+}
+
+.margin-y {
+  margin-bottom: 2*$defaultMargin !important;
+  margin-top: 2*$defaultMargin !important;
+}
+
+.padding-small {
+  padding: 4px $defaultMargin !important;
+}
+
+.padding {
+  padding: $defaultMargin 2*$defaultMargin !important;
+}
+
+.padding-large {
+  padding: .5*$defaultMargin 3*$defaultMargin !important;
+}
+
+.container {
+  margin: 15px;
+  width: 100%;
+}
+
+.content,
+.auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content {
+  max-width: 980px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.opacity {
+  opacity: 0.7;
+}
+
+.opacity:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .hide-small {
+    display: none !important;
+  }
+
+  .mobile {
+    display: block;
+    width: 100% !important;
+  }
+
+  .bar-item.mobile,
+  .dropdown-hover.mobile,
+  .dropdown-click.mobile {
+    text-align: center;
+  }
+}
+
+/*----------------- componant------------------------- */
+
+
+.c-timeline--container{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.c-timeline--title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $baby-blue;
+}
+.c-timeline {
+  display: flex;
+  justify-content: space-evenly;
+  overflow: hidden;
+  width: $defaultmin-width * 1.5;
+  margin: auto;
+  height: 30em;
+
+  .c-card {
     position: relative;
     overflow: hidden;
 
-    min-width: 60px;
+    min-width: ($defaultmin-width / 10 + 0px);
     margin: 10px;
 
-    background: var(--optionBackground, var(--defaultBackground, #E6E9ED));
+    background: var(--optionBackground, var(--defaultBackground, $baby-pink));
     background-size: auto 120%;
     background-position: center;
 
@@ -38,11 +408,14 @@ $optionDefaultColours: #ED5565,
       }
     }
 
+    &.c-card_hover{
+      box-shadow: 0px 0px 10px $baby-pink ;
+    }
+
     &.active {
       flex-grow: 10000;
       transform: scale(1);
-
-      max-width: 600px;
+      max-width: $defaultmin-width * .5;
       margin: 0px;
       border-radius: 40px;
 
@@ -52,13 +425,12 @@ $optionDefaultColours: #ED5565,
         box-shadow: inset 0 -120px 120px -120px black, inset 0 -120px 120px -100px black;
       }
 
-      .label {
+      .c-card--label {
         bottom: 20px;
         left: 20px;
 
-        .info>div {
+        .c-card--label_info > div {
           left: 0px;
-          opacity: 1;
         }
       }
 
@@ -73,13 +445,12 @@ $optionDefaultColours: #ED5565,
         box-shadow: inset 0 -120px 0px -120px black, inset 0 -120px 0px -100px black;
       }
 
-      .label {
+      .c-card--label {
         bottom: 10px;
         left: 10px;
 
-        .info>div {
-          left: 20px;
-          opacity: 0;
+        .c-card--label_info > div {
+         display: none;
         }
       }
     }
@@ -94,15 +465,7 @@ $optionDefaultColours: #ED5565,
 
       transition: .5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
     }
-    .fav_icon {
-      position: absolute;
-      right: 0px;
-      margin:10px 0 ;
-      min-width: 40px;
-      max-width: 40px;
-      height: 40px;
-    }
-    .label {
+    .c-card--label {
       display: flex;
       position: absolute;
       right: 0px;
@@ -110,9 +473,12 @@ $optionDefaultColours: #ED5565,
       height: 40px;
       transition: .5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
 
-      .icon {
+      .c-card--label_icon {
+        > img {
+          width: 30px;
+          height: auto;
+        }
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
 
@@ -121,24 +487,24 @@ $optionDefaultColours: #ED5565,
         height: 40px;
         border-radius: 100%;
 
-        background-color: white;
+        background-color: $baby-pink;
         color: var(--defaultBackground);
       }
 
       
 
-      .info {
+      .c-card--label_info {
         display: flex;
         flex-direction: column;
         justify-content: center;
 
         margin-left: 10px;
 
-        color: white;
+        color: $baby-pink;
 
         white-space: pre;
 
-        >div {
+        > div {
           position: relative;
 
           transition: .5s cubic-bezier(0.05, 0.61, 0.41, 0.95), opacity .5s ease-out;
@@ -146,7 +512,7 @@ $optionDefaultColours: #ED5565,
 
         .main {
           font-weight: bold;
-          font-size: 1.2rem;
+          font-size: 1.2em;
         }
 
         .sub {
@@ -157,8 +523,337 @@ $optionDefaultColours: #ED5565,
   }
 }
 
-.timeline {
+
+.c-chart{
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  margin: $defaultMargin;
+  padding: $defaultPadding;
+  background-color: $baby-pink;
+  .c-chart--graph {
+    padding: $defaultPadding;
+    min-width: $defaultmin-width;
+    width: 100%;
+    height: 500px;
+    margin-bottom: 4*$defaultMargin;
+  }
+  .c-chart--detail {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: $body-bg;
+    margin: $defaultMargin;
+    width: 100%;
+    .c-chart--detail_title {
+
+    }
+  }
+}
+
+.c-social-links {
+  z-index: 10;
+  display: flex;
+  position: fixed;
+  right: 0;
+  top: 20%;
+  background: $baby-pink;
+  border-radius: 0.5em 0 0 0.5em;
+  box-shadow: -4px 0px 0px $button-bg;
+  transition: all 300ms ease;
+  &:hover {
+    box-shadow: -$defaultMargin 0px 20px $button-bg;
+    padding: 1em;
+  }
+  .c-social-links_controls {
+    display: flex;
+    flex-direction: column;
+
+    .c-social-links_icon {
+      width: 30px;
+      height: auto;
+      margin: $defaultMargin;
+    }
+  }
+  
+
+  .links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .c-social-link a {
+    color: #111;
+    font-size: 1.5rem;
+    transition: all 200ms ease;
+  }
+
+  .c-social-link a:visited {
+    color: #111;
+  }
+
+  .c-social-link a:hover {
+    color: $button-bg;
+    font-size: 1.75rem;
+  }
+}
+
+.c-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: $baby-pink;
+
+  .c-bar-item {
+    color: $body-bg;
+    &:hover{
+      border-bottom: solid $button-bg;
+      //text-decoration: underline $button-bg;
+    }
+  }
+}
+
+.c-header {
+  margin-top: 4*$defaultMargin;
+  position: relative;
+  background-color: $baby-pink;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+
+  .c-header-image {
+    position: relative;
+    width: 50%;
+  }
+
+  .c-header-content {
+    color: $body-bg;
+  }
+
+  .c-header-button {
+    color: var(--button-text-color);
+    background-color: var(--button-bg);
+    border-radius: 4px;
+  }
+
+}
+
+.c-article_img {
+  max-height: 600px;
+}
+
+.c-article_actions {
+  display: flex;
   justify-content: space-between;
 }
+
+.c-comments {
+  display: flex;
+  margin: 2*$defaultMargin;
+}
+
+.c-comments_img {
+  width: 90px;
+  height: auto;
+}
+
+.c-modal {
+  z-index: 3;
+  display: block;
+  padding-top: 100px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+.c-modal_content {
+  margin: auto;
+  background-color: #fff;
+  position: relative;
+  outline: 0;
+  width: 600px;
+}
+
+
+.c-contact {
+  background-color: $baby-pink;
+  .c-contact--container{
+    display:  flex;
+    flex-direction: column;
+    padding: 2*$defaultPadding;
+    input,textarea {
+      margin: $defaultMargin 0;
+      padding: $defaultPadding;
+      border: solid 1px $button-bg;
+      border-radius: 4px;
+      display: block;
+      width: 80%;
+    }
+
+    textarea {
+      height: $defaultmin-width/3;
+    }
+    
+  }
+
+}
+
+
+/* ---------------- Objets ------------------- */
+
+.o-card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  width: 100%;
+}
+
+.cta-button {
+   font-size: $fs;
+   font-weight: bold;
+   margin: $defaultMargin;
+   padding: $defaultPadding;
+   border: solid $button-bg;
+   background: #def7e5;
+   color: black;
+   border-radius: 5px;
+   cursor: pointer;
+
+   &:hover {
+     background: $button-bg;
+     color: $baby-pink;
+   }
+
+   &:disabled {
+     background-color: #def7e5;
+     color: $body-bg;
+     border: solid gray;
+     cursor: not-allowed;
+   }
+}
+
+/*--------------------------- Responsive ---------------*/
+@media (max-width: 600px) {
+  .hide-small {
+    display: none !important;
+  }
+
+  .mobile {
+    display: block;
+    width: 100% !important;
+  }
+
+  .bar-item.mobile,
+  .dropdown-hover.mobile,
+  .dropdown-click.mobile {
+    text-align: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .c-header {
+    width: 110%;
+    height: 80vh;
+    position: relative;
+    background-color: $baby-pink;
+    
+    .c-header-image {
+      opacity: .3;
+      width: 100%;
+    }
+    .c-header-content {
+      //background-color: rgba($color: $baby-pink, $alpha: .5);
+      position: absolute;
+      color: $body-bg;
+      z-index: 1;
+    }
+
+  }
+  .c-timeline--container {
+    height: 150vh;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 692px) {
+
+  .c-timeline {
+    margin: 200px 200px 0 0;
+    height: 400px;
+    transform: rotate(90deg);
+    justify-content: center;
+    padding: $defaultMargin;
+    position: relative;
+    right: 50%;
+  }
+  .c-social-links {
+    display: flex;
+    position: fixed;
+    background: $baby-pink;
+    border-radius: 0.5em 0 0 0.5em;
+    box-shadow: -4px 0px 0px $button-bg;
+    transition: all 300ms ease;
+
+    &:hover {
+      box-shadow: -$defaultMargin 0px 20px $button-bg;
+      padding: 1em;
+    }
+
+    .c-social-links_controls {
+      >button {
+        font-size: $fs;
+        margin: $defaultMargin;
+        padding: $defaultPadding;
+        border: solid $button-bg;
+        background: transparent;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background: $button-bg;
+          color: $baby-pink;
+        }
+      }
+
+      display: flex;
+      flex-direction: column;
+
+      .c-social-links_icon {
+        width: 30px;
+        height: auto;
+        margin: $defaultMargin;
+      }
+    }
+
+
+    .links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .c-social-link a {
+      color: #111;
+      font-size: 1.5rem;
+      transition: all 200ms ease;
+    }
+
+    .c-social-link a:visited {
+      color: #111;
+    }
+
+    .c-social-link a:hover {
+      color: $button-bg;
+      font-size: 1.75rem;
+    }
+  }
+}
+
