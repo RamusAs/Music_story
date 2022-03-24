@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
 import * as helpers from "../helpers/helpers.js"
+import periods from "../data/periods.json" 
 
 export const Timeline = () => {
   const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
@@ -10,84 +11,19 @@ export const Timeline = () => {
   const [mute, setMute] = useState(false)
   const [songs, setSongs] = useState(false)
 
-  const tracks =  [
-    {
-      name: "La Genèse",
-      period: "Norm Ender",
-      desc: "",
-      content: "",
-      icon: "images/genese.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
-      favorited: false
-    },
-    {
-      name: "Le Moyen Âge ",
-      period: "Ve-XVe siècle",
-      icon: "images/moyen_age.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3",
-      url: "https://www.youtube.com/watch?v=Lin-a2lTelg",
-      favorited: false
-    },
-    {
-      name: "La Renaissance",
-      period: "Moby",
-      icon: "images/renaissance.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/3.mp3",
-      url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-      favorited: false
-    },
-    {
-      name: "La période classique",
-      period: "Sia",
-      icon: "images/classic.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/4.mp3",
-      url: "https://www.youtube.com/watch?v=kYgGwWYOd9Y",
-      favorited: false
-    },
-    {
-      name: "L’époque romantique",
-      period: "Haggard",
-      icon: "images/romantique.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/5.mp3",
-      url: "https://www.youtube.com/watch?v=0WlpALnQdN8",
-      favorited: false
-    },
-    {
-      name: "L’époque moderne",
-      period: "LSD",
-      icon: "/images/moderne.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/6.mp3",
-      url: "https://www.youtube.com/watch?v=HhoATZ1Imtw",
-      favorited: false
-    },
-    {
-      name: "L’époque contemporaine",
-      period: "Lindi Ortega",
-      icon: "/images/contemporaine.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/7.mp3",
-      url: "https://www.youtube.com/watch?v=me6aoX0wCV8",
-      favorited: true
-    },
-    {
-      name: "Demain",
-      period: "Lindi Ortega",
-      icon: "images/music.png",
-      source: "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/7.mp3",
-      url: "https://www.youtube.com/watch?v=me6aoX0wCV8",
-      favorited: true
-    },
-  ]
-
   const onOpen = (index) => {
-    const tab = document.getElementsByClassName('c-card')
-    if (tab[index].classList.value.split(' ').indexOf('active') < 0) {
-      for (let i = 0; i < tab.length; i++) {
-        tab[i].classList.remove('active')
+    const cards = document.getElementsByClassName('c-card')
+    if (cards[index].classList.value.split(' ').indexOf('active') < 0) {
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].classList.remove('active')
       }
-      tab[index].classList.add('active')
+      cards[index].classList.add('active')
+      const color = helpers.getTextColor(getComputedStyle(cards[index]).backgroundColor)
+      cards[index].firstChild.style.color = color
+      console.log(color);
     } 
     else {
-      tab[index].classList.remove('active')
+      cards[index].classList.remove('active')
     }
   }
     
@@ -97,10 +33,9 @@ export const Timeline = () => {
     {
       setSongs(false)
       let num = parseInt(id)
-      console.log(cards[num]);
-      cards[num].classList.add("c-card_hover")
+      cards[num]?.classList.add("c-card_hover")
       setTimeout(() =>{
-        cards[num].classList.remove("c-card_hover")
+        cards[num]?.classList.remove("c-card_hover")
       },200)  
       playOn(num);
     }
@@ -134,11 +69,13 @@ export const Timeline = () => {
   return (
     <>
         <div className="c-timeline">
-          {tracks.map((el,key) =>
-            <div className={`c-card`} id={key} key={key} onMouseOver={() => {if (!isMobile) { play(key) }}}  onClickCapture={() => {if (isMobile) { play(key) }}}>
+          {periods.map((el,key) =>
+            <div className={`c-card`} id={key} key={key} onMouseOver={() => { if (!isMobile) { play(key) } }} onClickCapture={() => { if (isMobile) { play(key) } }}>
+              <div className="c-card--content padding-large margin-top">
+                <p>{ el?.desc?.slice(0,isMobile ? 300 : 400) + " ..." }</p>
+              </div>
               <div className="shadow"></div>
               <div className="c-card--label">
-                
                 <div className="c-card--label_icon" onClick={() => onOpen(key)}>
                   <img src={el.icon} alt={el.name} />
                 </div>
