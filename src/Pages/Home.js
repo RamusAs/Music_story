@@ -22,10 +22,11 @@ export const Home = () => {
       {/* <!-- header --> */}
       <header className=" c-header wide" id="home">
         <div className="c-header-content padding-large">
-          <h1 className="text-white padding-large"><b>MUSIC STORY</b></h1>
+          <h1 className="text-white padding-large"><b>Une note, une histoire.</b></h1>
           <div  className="padding-large">
             <p>Un voyage sonore de la Préhistoire à nos jours à travers les grandes dates, qui ont fait l’histoire de la musique.</p>
             <p>Une première approche de notre patrimoine musical, illustrée par des exemples simples et de nombreux extraits en écoute.</p>
+            <p>Et si à l'occasion on apprends à jouer au Xylophone ;) .</p>
           </div>
           <button className="button padding-large large margin cta-button" onClick={() => {setOpenModal(true)}}>SUBSCRIBE</button>
         </div>

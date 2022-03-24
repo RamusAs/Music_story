@@ -30,10 +30,9 @@ export const Detail = () => {
           <h2 className="  margin-top">{period.name}</h2>
           <p className="margin">{period.desc}</p>
           {!playing && <button className="cta-button" onClick={() => play()}>Ecouter un extrait</button>}
-          {playing && <button className="cta-button" onClick={() => pause()}>Mettre en paus</button>}
+          {playing && <button className="cta-button" onClick={() => pause()}>Mettre en pause</button>}
         </div>
         <Chart data={helpers.getData(id)} />
-        
       </div>
 
       <audio id="source" src={period.source}> </audio>
